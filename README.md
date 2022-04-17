@@ -20,6 +20,7 @@ try {
     $wallet = new BPX\Wallet('localhost', 27926, 'C:\private_wallet.crt', 'C:\private_wallet.key');
     $farmer = new BPX\Farmer('localhost', 27924, 'C:\private_farmer.crt', 'C:\private_farmer.key');
     $harvester = new BPX\Harvester('localhost', 27925, 'C:\private_harvester.crt', 'C:\private_harvester.key');
+    $crawler = new BPX\Crawler('localhost', 27927, 'C:\private_crawler.crt', 'C:\private_crawler.key');
         
     var_dump(
         $fullNode -> getBlockchainState()
@@ -34,6 +35,10 @@ try {
     );
 		
     $harvester -> refreshPlots();
+    
+    var_dump(
+        $crawler -> getPeerCounts()
+    );
 }
     
 catch(BPX\Exceptions\ConnException $e) {
