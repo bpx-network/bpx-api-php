@@ -154,7 +154,7 @@ class Wallet extends RPCClient {
     }
     
     public function catSpend(int $walletId, string $address, string $amount, string $fee) {
-        $resp = $this -> request('send_transaction', [
+        $resp = $this -> request('cat_spend', [
             'wallet_id' => $walletId,
             'inner_address' => $address,
             'amount' => $amount,
