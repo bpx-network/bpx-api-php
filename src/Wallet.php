@@ -135,6 +135,50 @@ class Wallet extends RPCClient {
         unset($resp -> success);
         return $resp;
     }
+    
+    public function catSetName(int $walletId, string $name) {
+        return $this -> request('cat_set_name', [
+            'wallet_id' => $walletId,
+            'name' => $name
+        ]) -> wallet_id;
+    }
+    
+    public function catGetName(int $walletId) {
+        return $this -> request('cat_get_name', [
+            'wallet_id' => $walletId
+        ]) -> name;
+    }
+    
+    public function getStrayCats() {
+        return $this -> request('get_stray_cats') -> stray_cats;
+    }
+    
+    public function catSpend(int $walletId, string $address, string $amount, string $fee) {
+        $resp = $this -> request('send_transaction', [
+            'wallet_id' => $walletId,
+            'inner_address' => $address,
+            'amount' => $amount,
+            'fee' => $fee
+        ]);
+        unset($resp -> success);
+        return $resp;
+    }
+    
+    public function catGetAssetId(int $walletId) {
+        return $this -> request('cat_get_asset_id', [
+            'wallet_id' => $walletId
+        ]) -> asset_id;
+    }
+    
+    public function catAssetIdToName(string $assetId) {
+        return $this -> request('cat_asset_id_to_name', [
+            'asset_id' => $assetId
+        ]) -> name;
+    }
+    
+    public function getCatList() {
+        return $this -> request('get_cat_list') -> cat_list;
+    }
 }
 
 ?>
